@@ -1,12 +1,48 @@
-const express = require('express');
+import compression from "compression";
+import cors from "cors";
+import dotenv from "dotenv";
+import express from "express";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
+import { dbConnection } from "./src/config/dbConnection.js";
+import authRoute from "./src/routes/authRoute.js";
+import resumeRoute from "./src/routes/resumeRoute.js";
+import userRoute from "./src/routes/userRoute.js";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
-const port = 3000;
+dotenv.config();
 
-app.get('/', (req, res) => {
-  res.send('Welcome to my server!');
+//* ********* database connect ************
+dbConnection();
+
+
+//* ********* middleware ************
+app.use(express.json());
+app.use(express.urlencoded({ extended: true, limit: "1024px" }));
+app.use(cors());
+app.use(compression());
+app.set("trust proxy", true);
+
+//* ********** public path ************
+app.use("/images", express.static(__dirname + "/public/images"));
+app.use("/upload", express.static(__dirname + "/public/upload"));
+
+//* ********** app routes ************
+app.get("/", (req, res) => res.status(200).send("Server is running..."));
+app.use("/auth", authRoute);
+app.use("/user", userRoute);
+app.use("/resume", resumeRoute);
+
+//* **** route not found  ***********/
+app.use("*", (req, res) => {
+  res
+    .status(404)
+    .send({ success: "false", msg: "Route does not exist", data: {} });
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+const port = process.env.PORT ?? 3001;
+const server = app.listen(port, () => {
+  console.log(`Server running on post ${port}`);
 });

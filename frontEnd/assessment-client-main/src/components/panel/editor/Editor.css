@@ -1,0 +1,171 @@
+.resume-container {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+.resume-editor {
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.resume-preview {
+  margin: 20px 40px;
+}
+.resume-download-btn {
+  padding: 20px;
+}
+.resume-download-btn .save-btn {
+  padding: 10px;
+  background: #4c26bf;
+  color: #fff;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+/* RESUME EDITOR LAYOUT CSS START */
+
+/* RESUME INPUT CSS START */
+.nav-item {
+  color: #000;
+}
+.tab-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.editor-from {
+  background-color: #fff;
+  padding: 20px;
+  width: 95%;
+}
+.editor-from .inputBox {
+  position: relative;
+  width: 100%;
+}
+.editor-from .inputBox input {
+  position: relative;
+  width: 100%;
+  background: #eee;
+  border: none;
+  outline: none;
+  padding: 12px 10px;
+  border-radius: 4px;
+  color: #000;
+  font-weight: 400;
+  font-size: 16px;
+  margin-top: 4px;
+}
+.editor-from .inputBox input[type="submit"] {
+  padding: 10px;
+  margin-top: 20px;
+  width: 200px;
+  background: #4c26bf;
+  color: #fff;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+.group-button {
+  width: 100%;
+  display: flex;
+}
+.remove-btn {
+  background-color: #e49b9b;
+  padding: 10px 10px;
+  margin: 0px 30px 0px 30px;
+  margin-top: 20px;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+/* YourComponent.css */
+
+/* General styles */
+.tab-form {
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+
+.editor-from {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.inputBox {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  color: #495057;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.error {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* File input styles */
+.inputBox input[type="file"] {
+  padding: 8px;
+  font-size: 14px;
+}
+
+.inputBox input[type="file"]::before {
+  content: 'Select profile';
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.inputBox input[type="file"]:hover::before {
+  background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 768px) {
+  .editor-from {
+    max-width: 100%;
+  }
+
+  .inputBox {
+    margin-bottom: 15px;
+  }
+
+  input {
+    font-size: 14px;
+  }
+
+  .inputBox input[type="file"] {
+    padding: 6px;
+    font-size: 14px;
+  }
+
+  .inputBox input[type="file"]::before {
+    padding: 6px;
+    font-size: 14px;
+  }
+}
+
