@@ -1,12 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { getAllResume } from "../../../app/features/resume/asyncAction";
-import { setEditMode } from "../../../app/features/resume/resumeSlice";
 import { getUser } from "../../../app/features/user/asyncAction";
-import temp1Img from "../../../assets/resume-temp-1.png";
-import { planSetter } from "../../../utils/planSetter";
 import PanelLayout from "../../layout/PaynelLayout";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -26,22 +21,8 @@ const images = [
 const Home = () => {
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState([]);
-
   const resume = store?.resume?.savedResume;
   const user = store?.user?.user?.[0];
-
-  const handleView = (el) => {
-    setOpen(true);
-    setSelected(el);
-  };
-  const handleEdit = (el) => {
-    dispatch(setEditMode(el));
-    navigate(`/panel/editor?resume_id=${el?._id}`);
-  };
 
   useEffect(() => {
     dispatch(getAllResume());

@@ -1,12 +1,10 @@
 import { useState } from "react";
-import toast from "react-hot-toast";
-import { postLogin } from "../../../services/httpService";
 import PanelLayout from "../../layout/PaynelLayout";
 import "./Plan.css";
 
 const Plan = () => {
-  const [loader, setLoader] = useState(false);
-  const [selected, setSelected] = useState();
+  const [loader] = useState(false);
+  const [selected] = useState();
   const data = [
     {
       id: "starter",
@@ -25,36 +23,6 @@ const Plan = () => {
     },
   ];
 
-  const handleApiCall = async (payload) => {
-    try {
-      setLoader(true);
-      setSelected(payload);
-
-      postLogin.interceptors.request.use(function (config) {
-        const token = localStorage.getItem("auth_token");
-        config.headers.Authorization = `Bearer ${token}`;
-        return config;
-      });
-      const { data } = await postLogin.post("user/create-payment", payload);
-      console.log("data", data);
-      if (data?.success) {
-        console.log("data", data);
-        window.location.href = data?.data?.url;
-      }
-      setLoader(false);
-    } catch (error) {
-      setLoader(false);
-      toast.error(error?.response?.data?.msg);
-      console.log("error", error);
-    }
-  };
-
-  const renderElement = (el) => {
-    console.log(el);
-    if(el.id === 'business') {
-      return el;
-    }
- }
   return (
     <PanelLayout>
       <div className="plans">
@@ -85,7 +53,7 @@ const Plan = () => {
                 </ul>
               </div>
               <div className="button">
-                <button type="button" onClick={() => handleApiCall(el)} disabled={loader}>
+                <button type="button"  disabled={loader}>
                   {selected?.id === el?.id
                     ? loader
                       ? "Loading..."

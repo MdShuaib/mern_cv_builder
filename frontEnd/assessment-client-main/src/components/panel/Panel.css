@@ -209,6 +209,28 @@
   cursor: pointer;
   transition: transform 0.3s ease;
 }
+.save-btn {
+  padding: 10px;
+  background: green;
+  color: #fff;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.save_btn_detete {
+  padding: 10px;
+  background: red;
+  color: #fff;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+  
 .document__title .resume_fn_icons {
   height: 30px;
   width: 30px;

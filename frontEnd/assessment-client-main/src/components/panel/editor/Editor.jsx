@@ -1,9 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -126,9 +123,6 @@ const Editor = () => {
       toast.error("Resume edit log not completed, please complete cv then save");
     }
   };
-  const handleChange = (type) => {
-    dispatch(changeTemplate(type));
-  };
 
   useEffect(() => {
     if (isEditing && resume?.savedResume?.length) {
@@ -154,16 +148,6 @@ const Editor = () => {
               {loader ? "Loading..." : isEditing ? "Update Resume" : "Save Resume"}
             </button>
           </div>
-          <ButtonToolbar aria-label="Toolbar with button groups">
-            <ButtonGroup className="me-2" aria-label="First group">
-              <Button variant="secondary" onClick={() => handleChange("temp_one")}>
-                Template 1
-              </Button>
-              <Button variant="secondary" onClick={() => handleChange("temp_two")}>
-                Template 2
-              </Button>
-            </ButtonGroup>
-          </ButtonToolbar>
         </section>
         <section className="resume-preview">
           {resume?.templates === "temp_one" ? <FirstTemp /> : <SecTemp />}

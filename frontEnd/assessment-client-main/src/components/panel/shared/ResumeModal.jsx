@@ -1,16 +1,14 @@
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import Modal from "react-bootstrap/Modal";
-import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { postLogin } from "../../../services/httpService";
 import { tempImageUrl } from "../../../utils/ImageUrl";
 import "../templates/Temp.css";
 
 function ResumeModal({ open, setOpen, resume }) {
   const user = useSelector((store) => store?.user?.user);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const handleDownload = async () => {
     try {
       if (user?.[0]?.payment?.status !== "paid") {
@@ -20,9 +18,6 @@ function ResumeModal({ open, setOpen, resume }) {
         pdf.addImage(canvas.toDataURL("image/png"), 0, 0, 210, 297);
         pdf.save(`${resume?.about?.full_name}-resume.pdf`);
         handleDownloadUpdate();
-      } else {
-        toast.error("only 2 resumes");
-        navigate("/panel/plans");
       }
     } catch (error) {
       console.log("error", error);
@@ -61,9 +56,12 @@ function ResumeModal({ open, setOpen, resume }) {
       <Modal.Body>
         <div id="resume-view-1">
           <div className="resume">
-            <div className={`resume_left ${resume?.templates === "temp_two" && "temp_two"}`}>
+            <div className="resume_left">
               <div className="resume_profile">
-                <img src={tempImageUrl(resume?.about?.image)} alt="profile_pic" />
+                <img
+                  src={tempImageUrl(resume?.about?.image)}
+                  alt="profile_pic"
+                />
               </div>
               <div className="resume_content">
                 <div className="resume_item resume_info">
@@ -73,7 +71,9 @@ function ResumeModal({ open, setOpen, resume }) {
                   </div>
                   <ul>
                     <li>
-                      <div className="data">{resume?.address?.full_address}</div>
+                      <div className="data">
+                        {resume?.address?.full_address}
+                      </div>
                     </li>
                     <li>
                       <div className="data"> {resume?.address?.mobile}</div>
