@@ -28,8 +28,9 @@ const FirstTemp = () => {
       <div className="resume">
         <div className="resume_left">
           <div className="resume_profile">
-            <img src={prepareUrl()} alt="profile_pic" />
+            <img src={prepareUrl()} alt="Photo" />
           </div>
+          
           <div className="resume_content">
             <div className="resume_item resume_info">
               <div className="title">

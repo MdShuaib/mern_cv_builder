@@ -150,7 +150,7 @@ const Editor = () => {
           </div>
         </section>
         <section className="resume-preview">
-          {resume?.templates === "temp_one" ? <FirstTemp /> : <SecTemp />}
+          <FirstTemp />
         </section>
       </div>
     </PanelLayout>
