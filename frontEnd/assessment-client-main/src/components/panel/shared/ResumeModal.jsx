@@ -14,7 +14,7 @@ function ResumeModal({ open, setOpen, resume }) {
       if (user?.[0]?.payment?.status !== "paid") {
         const input = document.getElementById("resume-view-1");
         const canvas = await html2canvas(input, { useCORS: true });
-        const pdf = new jsPDF("p", "mm", "a4", true);
+        const pdf = new jsPDF();
         pdf.addImage(canvas.toDataURL("image/png"), 0, 0, 210, 297);
         pdf.save(`${resume?.about?.full_name}-resume.pdf`);
         handleDownloadUpdate();

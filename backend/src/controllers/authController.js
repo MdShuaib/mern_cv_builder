@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import userModel from '../models/userModel.js';
-import { forgetPassEmail, registrationMail } from '../services/email.js';
+import {registrationMail } from '../services/email.js';
 import { hashPassword, verifyPassword } from '../services/hash.js';
 import { signJWT, verifyJWT } from '../services/jwt.js';
 
@@ -20,12 +20,11 @@ export const signup = async (req, res) => {
     await registrationMail({
       name: user?.username,
       email: payload?.email,
-      // otp,
       url: `${process.env.SERVER_URL}/auth/verify?token=${token}`
     });
     res.status(200).send({
       success: true,
-      msg: 'user registration successful, check your mail to verify'
+      msg: 'User registration successful, check your mail to verify'
     });
   } catch (error) {
     console.log(chalk.bgRed.bold(error?.message), error);
